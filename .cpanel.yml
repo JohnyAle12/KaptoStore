@@ -3,17 +3,17 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/kaptoco/public_html/kapto/
     - export APPPATH=/home/kaptoco/public_html/kapto/StoreApp/
-    - /bin/cp -R public/ $DEPLOYPATH
-    - /bin/cp public/index.php $DEPLOYPATH
-    - /bin/cp -R app $APPPATH
-    - /bin/cp -R boostrap $APPPATH
-    - /bin/cp -R config $APPPATH
-    - /bin/cp -R database $APPPATH
-    - /bin/cp -R node_modules $APPPATH
-    - /bin/cp -R resources $APPPATH
-    - /bin/cp -R routes $APPPATH
-    - /bin/cp -R storage $APPPATH
-    - /bin/cp -R test $APPPATH
-    - /bin/cp -R vendor $APPPATH
+    - /bin/cp -R public/* $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp -R app $APPPATH/app
+    - /bin/cp -R boostrap $APPPATH/boostrap
+    - /bin/cp -R config $APPPATH/config
+    - /bin/cp -R database $APPPATH/database
+    - /bin/cp -R node_modules $APPPATH/node_modules
+    - /bin/cp -R resources $APPPATH/resources
+    - /bin/cp -R routes $APPPATH/routes
+    - /bin/cp -R storage $APPPATH/storage
+    - /bin/cp -R test $APPPATH/test
+    - /bin/cp -R vendor $APPPATH/vendor
     - /bin/cp .styleci.yml $APPPATH
     - /bin/cp server.php $APPPATH
