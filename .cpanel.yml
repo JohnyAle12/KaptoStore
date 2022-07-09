@@ -19,6 +19,7 @@ deployment:
     - /bin/cp -R vendor $APPPATH
     - /bin/cp .editorconfig $APPPATH
     - /bin/cp .env.example $APPPATH
+    - /bin/cp .gitignore $APPPATH
     - /bin/cp .phpunit.result.cache $APPPATH
     - /bin/cp .styleci.yml $APPPATH
     - /bin/cp artisan $APPPATH
