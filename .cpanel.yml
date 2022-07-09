@@ -5,7 +5,7 @@ deployment:
     - export APPPATH=/home/kaptoco/public_html/kapto/StoreApp/
     - /bin/cp -R public/* $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
-    - /bin/cp -R app /home/kaptoco/public_html/kapto/StoreApp/app
+    - /bin/cp -R app/ $APPPATH
     - /bin/cp -R boostrap $APPPATH
     - /bin/cp -R config $APPPATH
     - /bin/cp -R database $APPPATH
