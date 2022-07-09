@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('dattaable/assets/css/style.css') }}">
 
     <!-- Principal Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
     <body>
@@ -175,8 +175,8 @@
 	    <script src="{{ asset('dattaable/assets/plugins/datatables/datatables.min.js') }}"></script>
 
         <!-- Principal Scripts -->
-        <script src="{{ mix('js/app.js') }}"></script>
-        <script src="{{ mix('js/bundle.private.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
+        <script src="{{ asset('js/bundle.private.js') }}"></script>
 
         @include('layouts.alerts')
         @yield('scripts')

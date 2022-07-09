@@ -15,7 +15,7 @@
         <!-- vendor css -->
         <link rel="stylesheet" href="{{ asset('dattaable/assets/css/style.css') }}">
         <!-- Principal Styles -->
-        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     </head>
 
     <body>
@@ -27,6 +27,6 @@
         <script src="{{ asset('dattaable/assets/js/vendor-all.min.js') }}"></script>
         <script src="{{ asset('dattaable/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
         <!-- Principal Scripts -->
-        <script src="{{ mix('js/bundle.private.js') }}"></script>
+        <script src="{{ asset('js/bundle.private.js') }}"></script>
     </body>
 </html>
