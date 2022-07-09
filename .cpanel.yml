@@ -5,6 +5,7 @@ deployment:
     - export APPPATH=/home/kaptoco/public_html/kapto/StoreApp/
     - /bin/mkdir $APPPATH
     - /bin/cp -R public/* $DEPLOYPATH
+    - /bin/cp .htaccess $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp -R app $APPPATH
     - /bin/cp -R bootstrap $APPPATH
