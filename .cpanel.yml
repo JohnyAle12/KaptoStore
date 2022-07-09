@@ -1,0 +1,18 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/user/public_html/kapto
+    - export APPPATH=/home/user/public_html/kapto/StoreApp
+    - /bin/cp public/* $DEPLOYPATH
+    - /bin/cp app $APPPATH
+    - /bin/cp boostrap $APPPATH
+    - /bin/cp config $APPPATH
+    - /bin/cp database $APPPATH
+    - /bin/cp node_modules $APPPATH
+    - /bin/cp resources $APPPATH
+    - /bin/cp routes $APPPATH
+    - /bin/cp storage $APPPATH
+    - /bin/cp test $APPPATH
+    - /bin/cp vendor $APPPATH
+    - /bin/cp .env $APPPATH
+    - /bin/cp server.php $APPPATH

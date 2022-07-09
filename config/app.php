@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Trading Stock BTC'),
+    'name' => env('APP_NAME', 'Kapto Store'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://app.trades.btc.com'),
+    'url' => env('APP_URL', 'https://kapto.co'),
 
     'asset_url' => env('ASSET_URL', null),
 
