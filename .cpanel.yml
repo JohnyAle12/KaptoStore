@@ -15,4 +15,5 @@ deployment:
     - /bin/cp test $APPPATH
     - /bin/cp vendor $APPPATH
     - /bin/cp .env $APPPATH
+    - /bin/cp .styleci.yml $APPPATH    
     - /bin/cp server.php $APPPATH
