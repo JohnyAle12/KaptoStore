@@ -5,7 +5,7 @@ deployment:
     - export APPPATH=/home/kaptoco/public_html/kapto/StoreApp/
     - /bin/cp -R public/* $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
-    - /bin/cp -R app $APPPATH
+    - /bin/cp -R app/ $APPPATH
     - /bin/cp -R boostrap $APPPATH
     - /bin/cp -R config $APPPATH
     - /bin/cp -R database $APPPATH
@@ -15,5 +15,5 @@ deployment:
     - /bin/cp -R storage $APPPATH
     - /bin/cp -R test $APPPATH
     - /bin/cp -R vendor $APPPATH
-    - /bin/cp .styleci.yml $APPPATH
-    - /bin/cp server.php $APPPATH
+    - /bin/cp .styleci.yml $DEPLOYPATH
+    - /bin/cp server.php $DEPLOYPATH
