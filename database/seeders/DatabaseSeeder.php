@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(TransactionSeed::class);
 
         // \App\Models\Request::factory()->times(10)->create();
         // \App\Models\Investment::factory()->times(25)->create();

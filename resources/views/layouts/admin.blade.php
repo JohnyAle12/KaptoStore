@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Favicon icon -->
-    <link rel="icon" type="image/x-icon" href="{{ asset('dattaable/assets/images/favicon.ico') }}">
+    {{-- <link rel="icon" type="image/x-icon" href="{{ asset('dattaable/assets/images/favicon.ico') }}"> --}}
     <!-- fontawesome icon -->
     <link rel="stylesheet" href="{{ asset('dattaable/assets/fonts/fontawesome/css/fontawesome-all.min.css') }}">
     <!-- animation css -->
@@ -46,13 +46,13 @@
                             <a href="{{ route('home') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Panel de control</span></a>
                         </li>
                         @if(Auth::user()->roles()->get()->first()->id == 1)
-                            @include('layouts.admin_menu')
+                            @include('layouts.menus.admin_menu')
                         @elseif(Auth::user()->roles()->get()->first()->id == 2)
-                            @include('layouts.menu')
+                            @include('layouts.menus.menu')
                         @elseif(Auth::user()->roles()->get()->first()->id == 3)
-                            @include('layouts.menu_provider')
+                            @include('layouts.menus.menu')
 						@elseif(Auth::user()->roles()->get()->first()->id == 4)
-                            @include('layouts.menu_agent')
+                            @include('layouts.menus.menu')
                         @endif
                     </ul>
                 </div>
@@ -82,6 +82,41 @@
                     </li>
                     @endif
                     <li>
+                        <div class="dropdown">
+                            <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown" aria-expanded="true"><i class="icon feather icon-users"></i> Perfiles</a>
+                            <div class="dropdown-menu dropdown-menu-right notification">
+                                <div class="noti-head">
+                                    <h6 class="d-inline-block m-b-0">Cambiar perfil</h6>
+                                </div>
+                                <ul class="noti-body">
+                                    <li class="notification">
+                                        <a href="">
+                                            <div class="media">
+                                                <img class="img-radius" src="{{ asset('img/profile_images/user.png') }}">
+                                                <div class="media-body">
+                                                    <p><strong>Asistente Portal</strong></p>
+                                                    <p><small class="text-muted">Usuario de asistente con privilegio gestionados por el administrador</small></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li class="notification">
+                                        <a href="">
+                                            <div class="media">
+                                                <img class="img-radius" src="{{ asset('img/profile_images/user.png') }}">
+                                                <div class="media-body">
+                                                    <p><strong>Asistente Portal</strong></p>
+                                                    <p><small class="text-muted">Usuario de asistente con privilegio gestionados por el administrador</small></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="noti-footer"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
                         <div class="dropdown drp-user">
                             <a href="javascript:" class="dropdown-toggle" data-toggle="dropdown" style="font-size: 15px">
                                 <i class="icon feather icon-user"></i> {{ substr(Auth::user()->name.' '.Auth::user()->lastname, 0, 22) }}
@@ -89,7 +124,7 @@
                             <div class="dropdown-menu dropdown-menu-right profile-notification">
                                 <div class="pro-head">
                                     <img src="{{ asset('img/profile_images/user.png') }}" class="profile-image" alt="User-Profile-Image">
-                                    <span>{{ __('roles.'.Auth::user()->roles()->get()->first()->name) }}</span>
+                                    <span>{{ Auth::user()->roles()->get()->first()->name }}</span>
                                     <a href="{{ route('user.index') }}" class="dud-logout" title="Logout">
                                         <i class="feather icon-settings"></i>
                                     </a>

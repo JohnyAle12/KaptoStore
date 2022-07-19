@@ -16,20 +16,24 @@ class RoleSeeder extends Seeder
     {
 		Role::insert([
 			[
-				'name' => 'Administrator',
+				'name' => 'Super Usuario',
 				'description' => 'Administrador con todos los privilegios en el sistema'
 			],
 			[
-				'name' => 'Customer',
-				'description' => 'Usuario de cliente con privilegio gestionados por el administrador'
+				'name' => 'Asistente Portal',
+				'description' => 'Usuario de asistente con privilegio gestionados por el administrador'
 			],
 			[
-				'name' => 'Provider',
-				'description' => 'Usuario proveedor creación de usuarios'
+				'name' => 'Consulta Proveedor',
+				'description' => 'Usuario de consulta con privilegio gestionados por el administrador'
 			],
 			[
-				'name' => 'Agent',
-				'description' => 'Usuario agentes creación de usuarios'
+				'name' => 'Gestor Comercial',
+				'description' => 'Usuario de gestor con privilegio gestionados por el administrador'
+			],
+			[
+				'name' => 'Otro',
+				'description' => 'Usuario sin rol específico puede ser gestionados por el administrador'
 			]
 
 		]);

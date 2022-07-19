@@ -14,12 +14,12 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('checkrole:Administrator|Customer|Provider|Agent')->only(
-            'index', 'userVerify', 'changeUserPassword', 'update', 'updateUserPassword'
-        );
-        $this->middleware('checkrole:Administrator')->only(
-            'create', 'store', 'adminUsers', 'usersApiDataTable', 'approveUser', 'approveUserEmail'
-        );
+        // $this->middleware('checkrole:Administrator|Customer|Provider|Agent')->only(
+        //     'index', 'userVerify', 'changeUserPassword', 'update', 'updateUserPassword'
+        // );
+        // $this->middleware('checkrole:Administrator')->only(
+        //     'create', 'store', 'adminUsers', 'usersApiDataTable', 'approveUser', 'approveUserEmail'
+        // );
     }
 
 	public function index(){
