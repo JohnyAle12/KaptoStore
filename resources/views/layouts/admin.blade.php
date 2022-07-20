@@ -45,13 +45,13 @@
                         <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Panel de control</span></a>
                         </li>
-                        @if(Auth::user()->roles()->get()->first()->id == 1)
+                        @if(auth()->user()->active_role == 1)
                             @include('layouts.menus.admin_menu')
-                        @elseif(Auth::user()->roles()->get()->first()->id == 2)
+                        @elseif(auth()->user()->active_role == 2)
                             @include('layouts.menus.menu')
-                        @elseif(Auth::user()->roles()->get()->first()->id == 3)
+                        @elseif(auth()->user()->active_role == 3)
                             @include('layouts.menus.menu')
-						@elseif(Auth::user()->roles()->get()->first()->id == 4)
+						@elseif(auth()->user()->active_role == 4)
                             @include('layouts.menus.menu')
                         @endif
                     </ul>
@@ -83,34 +83,31 @@
                     @endif
                     <li>
                         <div class="dropdown">
-                            <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown" aria-expanded="true"><i class="icon feather icon-users"></i> Perfiles</a>
+                            <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown" aria-expanded="true"><i class="icon feather icon-users"></i> 
+                                {{ auth()->user()->roles()->where('role_id', auth()->user()->active_role)->first()->name }}
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right notification">
                                 <div class="noti-head">
                                     <h6 class="d-inline-block m-b-0">Cambiar perfil</h6>
                                 </div>
                                 <ul class="noti-body">
-                                    <li class="notification">
-                                        <a href="">
-                                            <div class="media">
-                                                <img class="img-radius" src="{{ asset('img/profile_images/user.png') }}">
-                                                <div class="media-body">
-                                                    <p><strong>Asistente Portal</strong></p>
-                                                    <p><small class="text-muted">Usuario de asistente con privilegio gestionados por el administrador</small></p>
+                                    @foreach (auth()->user()->roles()->get() as $role)
+                                        <li class="notification">
+                                            <a href="#" onclick="event.preventDefault();document.getElementById('change-profile-{{ $role->id }}').submit();">
+                                                <div class="media">
+                                                    <img class="img-radius" src="{{ asset('img/profile_images/user.png') }}">
+                                                    <div class="media-body">
+                                                        <p><strong>{{ $role->name }}</strong></p>
+                                                        <p><small class="text-muted">{{ $role->description }}</small></p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </a>
-                                    </li>
-                                    <li class="notification">
-                                        <a href="">
-                                            <div class="media">
-                                                <img class="img-radius" src="{{ asset('img/profile_images/user.png') }}">
-                                                <div class="media-body">
-                                                    <p><strong>Asistente Portal</strong></p>
-                                                    <p><small class="text-muted">Usuario de asistente con privilegio gestionados por el administrador</small></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </li>
+                                            </a>
+                                            <form id="change-profile-{{ $role->id }}" action="{{ route('change.profile', $role->id) }}" method="POST">
+                                                @csrf
+                                                @method('PUT')
+                                            </form>
+                                        </li>
+                                    @endforeach
                                 </ul>
                                 <div class="noti-footer"></div>
                             </div>

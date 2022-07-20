@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Events\UserUpdated;
+use App\Models\Role;
+use App\Models\RoleUser;
 use App\Models\User;
 use Auth;
 use Carbon\Carbon;
@@ -28,7 +30,8 @@ class UserController extends Controller
 	}
 
     public function create(){
-        return view('users.create');
+        $roles = Role::where('id', '!=', '5')->get();
+        return view('users.create', compact('roles'));
     }
 
     public function store(Request $request){
@@ -156,7 +159,6 @@ class UserController extends Controller
                 ->join('role_user', 'users.id', '=', 'role_user.user_id')
                 ->join('roles', 'role_user.role_id', '=', 'roles.id')
                 ->where('users.id', '!=', auth()->user()->id)
-                ->whereIn('role_user.role_id', [2, 3])
                 ->orderBy('users.created_at', 'desc')
                 ->groupBy('id');
 
@@ -221,5 +223,4 @@ class UserController extends Controller
         $user = $user->only('account', 'document_id', 'name', 'lastname', 'mobile', 'email', 'city', 'address', 'state', 'created_at');
         return view('layouts.profile', compact('user', 'roles'));
     }
-
 }

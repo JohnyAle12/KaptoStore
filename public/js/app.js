@@ -30712,6 +30712,8 @@ module.exports = function(module) {
 
 __webpack_require__(/*! ./users */ "./resources/js/users.js");
 
+__webpack_require__(/*! ./profiles */ "./resources/js/profiles.js");
+
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //config Toast
 
 
@@ -30780,6 +30782,37 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/profiles.js":
+/*!**********************************!*\
+  !*** ./resources/js/profiles.js ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+$("#profiles-table").DataTable({
+  "serverSide": true,
+  "ajax": "/datatable/profiles",
+  "responsive": true,
+  "autoWidth": true,
+  "paging": true,
+  "lengthChange": false,
+  "searching": false,
+  "ordering": true,
+  "info": true,
+  "language": {
+    "url": "/lang/dataTables.es.json"
+  },
+  "columns": [{
+    data: 'id'
+  }, {
+    data: 'name'
+  }, {
+    data: 'description'
+  }]
+});
 
 /***/ }),
 

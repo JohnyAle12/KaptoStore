@@ -21,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'account', 'document_id', 'name', 'lastname', 'mobile', 'email', 'email_verified_at', 'password', 'city', 'address', 'state'
+        'account', 'active_role', 'document_id', 'name', 'lastname', 'mobile', 'email', 'email_verified_at', 'password', 'city', 'address', 'state'
     ];
 
     /**
@@ -105,7 +105,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         $hasRole = RoleUser::join('roles', 'role_user.role_id', '=', 'roles.id')
             ->where('roles.name', $role)
-            ->where('role_user.user_id', Auth::user()->id)
+            ->where('role_user.user_id', auth()->user()->id)
             ->first();
         if($hasRole){
             return true;

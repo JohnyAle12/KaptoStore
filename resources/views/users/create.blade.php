@@ -61,10 +61,9 @@
                                                     <label for="role">Rol de usuario</label>
                                                     <select id="role" name="role" class="form-control @error('role') is-invalid @enderror" required>
                                                         <option>Seleccionar</option>
-                                                        <option value="1" {{ old('role') == '1' ? 'selected':'' }}>Administrador</option>
-                                                        <option value="2" {{ old('role') == '2' ? 'selected':'' }}>Cliente</option>
-                                                        <option value="3" {{ old('role') == '3' ? 'selected':'' }}>Proveedor</option>
-                                                        <option value="4" {{ old('role') == '4' ? 'selected':'' }}>Agente</option>
+                                                        @foreach ($roles as $role)
+                                                            <option value="{{ $role->id }}" {{ old('role') == $role->id ? 'selected':'' }}>{{ $role->name }}</option>
+                                                        @endforeach
                                                     </select>
                                         
                                                     @error('role')

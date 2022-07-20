@@ -1,4 +1,5 @@
 require('./users');
+require('./profiles');
 
 require('./bootstrap');
 

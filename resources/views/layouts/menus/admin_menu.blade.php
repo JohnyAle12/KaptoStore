@@ -6,9 +6,9 @@
     <ul class="pcoded-submenu">
         <li><a href="{{ route('admin.users') }}">Administrar usuarios</a></li>
         <li><a href="{{ route('user.create') }}">Crear usuario</a></li>
-        <li><a href="">Asignar perfil</a></li>
-        <li><a href="">Crear perfil</a></li>
-        <li><a href="">Administrar perfiles</a></li>
+        <li><a href="{{ route('assign.profile') }}">Asignar perfil</a></li>
+        <li><a href="{{ route('create.profile') }}">Crear perfil</a></li>
+        <li><a href="{{ route('admin.profile') }}">Administrar perfiles</a></li>
     </ul>
 </li>
 <li class="nav-item pcoded-hasmenu">

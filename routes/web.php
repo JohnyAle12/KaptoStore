@@ -1,13 +1,9 @@
 <?php
 
-use App\Http\Controllers\BalanceController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\InvestmentController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ClientController;
-use App\Http\Controllers\WithdrawalController;
-use App\Http\Controllers\OpenTradeController;
-use App\Http\Controllers\AgentController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,17 +32,25 @@ Route::middleware(['auth', 'verified', 'user.confirmed'])->group(function () {
 
 	Route::prefix('datatable')->group(function () {
 		Route::get('users', [UserController::class, 'usersApiDataTable']);
+		Route::get('profiles', [ProfileController::class, 'profilesApiDataTable']);
 	});
 
 	Route::get('inicio', [HomeController::class, 'index'])->name('home');
+
 	Route::resource('usuario', UserController::class)->names('user')->except('show', 'destroy');
 	Route::get('cambiar-contraseña', [UserController::class, 'changeUserPassword'])->name('password.change');
 	Route::put('actualiza-contraseña/{user}', [UserController::class, 'updateUserPassword'])->name('password.user.update');
-	Route::put('actualiza-contraseña-agente/{user}', [AgentController::class, 'updateAgentPassword'])->name('password.agent.update');
 	Route::get('administrar-usuarios', [UserController::class, 'adminUsers'])->name('admin.users');
 	Route::post('aprueba-usuario/{user}', [UserController::class, 'approveUser'])->name('approve.user');
 	Route::post('aprueba-usuario-email/{user}', [UserController::class, 'approveUserEmail']);
 	Route::get('datos-de-usuario/{user}', [UserController::class, 'informationUser']);
+
+	Route::get('asignar-perfil', [ProfileController::class, 'assignProfile'])->name('assign.profile');
+	Route::post('asignar-perfil', [ProfileController::class, 'saveAssignProfile'])->name('save.assign.profile');
+	Route::get('crear-perfil', [ProfileController::class, 'createProfile'])->name('create.profile');
+	Route::post('crear-perfil', [ProfileController::class, 'saveCreateProfile'])->name('save.profile');
+	Route::get('administrar-perfiles', [ProfileController::class, 'adminProfile'])->name('admin.profile');
+	Route::put('cambiar-perfil/{role}', [ProfileController::class, 'changeProfileUser'])->name('change.profile');
 
 });
 

@@ -26,18 +26,18 @@
                                     <h5>Administración de usuarios</h5>
                                 </div>
                                 <div class="card-body">
-                                  <table id="users-table" class="table table-bordered table-striped">
-                                    <thead>
-                                      <tr>
-                                        <th>Fecha de registro</th>
-                                        <th>Nombres y apellidos</th>
-                                        <th>Identificación</th>
-                                        <th>Perfiles</th>
-                                        <th>Datos contacto</th>
-                                        <th>Aprobar</th>
-                                      </tr>
-                                    </thead>
-                                </table>
+                                    <table id="users-table" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Fecha de registro</th>
+                                                <th>Nombres y apellidos</th>
+                                                <th>Identificación</th>
+                                                <th>Perfiles</th>
+                                                <th>Datos contacto</th>
+                                                <th>Aprobar</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
                                 </div>
                             </div>
                         </div>
