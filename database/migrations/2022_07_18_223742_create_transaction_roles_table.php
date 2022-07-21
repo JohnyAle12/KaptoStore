@@ -13,7 +13,7 @@ class CreateTransactionRolesTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaction_roles', function (Blueprint $table) {
+        Schema::create('role_transaction', function (Blueprint $table) {
             $table->id();
             $table->foreignId('transaction_id')->references('id')->on('transactions');
             $table->foreignId('role_id')->references('id')->on('roles');
@@ -28,6 +28,6 @@ class CreateTransactionRolesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('transaction_roles');
+        Schema::dropIfExists('role_transaction');
     }
 }

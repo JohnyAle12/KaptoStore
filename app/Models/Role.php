@@ -10,6 +10,7 @@ class Role extends Model
     use HasFactory;
 
     public $timestamps = false;
+    protected $table = 'roles';
 
     protected $fillable = [
         'name', 'description'
@@ -20,11 +21,16 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\Models\User')->using('App\Models\RoleUser');
+        return $this->belongsToMany(User::class)->using(RoleUser::class);
     }
 
     public function getRoleName()
     {
         return $this->attributes['name'];
+    }
+
+    public function transactions()
+    {
+        return $this->belongsToMany(Transaction::class)->using(TransactionRole::class);
     }
 }

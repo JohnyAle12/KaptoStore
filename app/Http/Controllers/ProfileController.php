@@ -95,15 +95,15 @@ class ProfileController extends Controller
             $transactionRole->save();
             return redirect()->route('admin.profile')->with('success', 'has asignado una nueva transacción con éxito.');
         }
-        return redirect()->route('admin.profile')->with('success', 'esta asignacion ya existe.');
+        return redirect()->route('admin.profile')->with('success', 'esta asignación ya existe.');
     }
 
     public function profilesTransactionsApiDataTable(Request $request){
         if($request->ajax()){
             $query = TransactionRole::query()
-                ->select('transaction_roles.id', 'roles.name AS nameRole', 'transactions.name AS nameTransaction')
-                ->join('roles', 'transaction_roles.role_id', '=', 'roles.id')
-                ->join('transactions', 'transaction_roles.transaction_id', '=', 'transactions.id');
+                ->select('role_transaction.id', 'roles.name AS nameRole', 'transactions.name AS nameTransaction')
+                ->join('roles', 'role_transaction.role_id', '=', 'roles.id')
+                ->join('transactions', 'role_transaction.transaction_id', '=', 'transactions.id');
     		return datatables()
     			->eloquent($query)
                 ->addColumn('profile', function ($query) {

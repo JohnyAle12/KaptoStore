@@ -67,7 +67,7 @@ class User extends Authenticatable implements MustVerifyEmail
     // Relacion al modelo roles por medio de tabla pivote
     public function roles()
     {
-        return $this->belongsToMany('App\Models\Role')->using('App\Models\RoleUser');
+        return $this->belongsToMany(Role::class)->using(RoleUser::class);
     }
 
     // Relacion al modelo request

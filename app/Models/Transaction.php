@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
+
+    protected $table = 'transactions';
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class)->using(TransactionRole::class);
+    }
 }

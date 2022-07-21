@@ -45,15 +45,7 @@
                         <li class="nav-item">
                             <a href="{{ route('home') }}" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Panel de control</span></a>
                         </li>
-                        @if(auth()->user()->active_role == 1)
-                            @include('layouts.menus.admin_menu')
-                        @elseif(auth()->user()->active_role == 2)
-                            @include('layouts.menus.menu')
-                        @elseif(auth()->user()->active_role == 3)
-                            @include('layouts.menus.menu')
-						@elseif(auth()->user()->active_role == 4)
-                            @include('layouts.menus.menu')
-                        @endif
+                        @include('layouts.menus.admin_menu')
                     </ul>
                 </div>
             </div>
@@ -84,14 +76,14 @@
                     <li>
                         <div class="dropdown">
                             <a class="dropdown-toggle" href="javascript:" data-toggle="dropdown" aria-expanded="true"><i class="icon feather icon-users"></i> 
-                                {{ auth()->user()->roles()->where('role_id', auth()->user()->active_role)->first()->name }}
+                                {{ activeRole() }}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right notification">
                                 <div class="noti-head">
                                     <h6 class="d-inline-block m-b-0">Cambiar perfil</h6>
                                 </div>
                                 <ul class="noti-body">
-                                    @foreach (auth()->user()->roles()->get() as $role)
+                                    @foreach (getRoles() as $role)
                                         <li class="notification">
                                             <a href="#" onclick="event.preventDefault();document.getElementById('change-profile-{{ $role->id }}').submit();">
                                                 <div class="media">
@@ -121,7 +113,7 @@
                             <div class="dropdown-menu dropdown-menu-right profile-notification">
                                 <div class="pro-head">
                                     <img src="{{ asset('img/profile_images/user.png') }}" class="profile-image" alt="User-Profile-Image">
-                                    <span>{{ Auth::user()->roles()->get()->first()->name }}</span>
+                                    <span>{{ activeRole() }}</span>
                                     <a href="{{ route('user.index') }}" class="dud-logout" title="Logout">
                                         <i class="feather icon-settings"></i>
                                     </a>
