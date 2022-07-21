@@ -33,6 +33,7 @@ Route::middleware(['auth', 'verified', 'user.confirmed'])->group(function () {
 	Route::prefix('datatable')->group(function () {
 		Route::get('users', [UserController::class, 'usersApiDataTable']);
 		Route::get('profiles', [ProfileController::class, 'profilesApiDataTable']);
+		Route::get('profiles-transactions', [ProfileController::class, 'profilesTransactionsApiDataTable']);
 	});
 
 	Route::get('inicio', [HomeController::class, 'index'])->name('home');
@@ -50,6 +51,8 @@ Route::middleware(['auth', 'verified', 'user.confirmed'])->group(function () {
 	Route::get('crear-perfil', [ProfileController::class, 'createProfile'])->name('create.profile');
 	Route::post('crear-perfil', [ProfileController::class, 'saveCreateProfile'])->name('save.profile');
 	Route::get('administrar-perfiles', [ProfileController::class, 'adminProfile'])->name('admin.profile');
+	Route::post('perfil-transaccion', [ProfileController::class, 'saveAdminProfile'])->name('save.profile.transaction');
+	Route::delete('eliminar-perfil-transaccion/{transactionRole}', [ProfileController::class, 'deleteAdminProfile']);
 	Route::put('cambiar-perfil/{role}', [ProfileController::class, 'changeProfileUser'])->name('change.profile');
 
 });

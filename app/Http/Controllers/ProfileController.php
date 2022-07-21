@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Role;
 use App\Models\RoleUser;
+use App\Models\Transaction;
+use App\Models\TransactionRole;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -49,7 +51,10 @@ class ProfileController extends Controller
     }
 
     public function adminProfile(){
-        return view('profiles.admin');
+        $roles = Role::where('id', '!=', '5')->get();
+        $categories = Transaction::select('category')->groupBy('category')->get();
+        $transactions = Transaction::get();
+        return view('profiles.admin', compact('roles', 'categories', 'transactions'));
     }
 
     public function profilesApiDataTable(Request $request){
@@ -72,5 +77,53 @@ class ProfileController extends Controller
             'active_role' => $role->id
         ]);
         return redirect()->route('home')->with('success', 'has cambiado de perfil con éxito.');
+    }
+
+    public function saveAdminProfile(Request $request){
+        request()->validate([
+            'transaction' => 'required',
+    		'role' => 'required',
+    	]);
+
+        $exist = TransactionRole::where('transaction_id', $request->transaction)
+            ->where('role_id', $request->role)
+            ->exists();
+        if(!$exist){
+            $transactionRole = new TransactionRole();
+            $transactionRole->transaction_id = $request->transaction;
+            $transactionRole->role_id = $request->role;
+            $transactionRole->save();
+            return redirect()->route('admin.profile')->with('success', 'has asignado una nueva transacción con éxito.');
+        }
+        return redirect()->route('admin.profile')->with('success', 'esta asignacion ya existe.');
+    }
+
+    public function profilesTransactionsApiDataTable(Request $request){
+        if($request->ajax()){
+            $query = TransactionRole::query()
+                ->select('transaction_roles.id', 'roles.name AS nameRole', 'transactions.name AS nameTransaction')
+                ->join('roles', 'transaction_roles.role_id', '=', 'roles.id')
+                ->join('transactions', 'transaction_roles.transaction_id', '=', 'transactions.id');
+    		return datatables()
+    			->eloquent($query)
+                ->addColumn('profile', function ($query) {
+                    return $query->nameRole;
+                })
+                ->addColumn('transaction', function ($query) {
+                    return $query->nameTransaction;
+                })
+                ->addColumn('delete', function ($query) {
+                    return '<a data-transaction-role="'.$query->id.'" class="transaction-role text-danger">❌ Eliminar</a>';
+                })
+                ->rawColumns(['delete'])
+    			->toJson();
+    	}
+    }
+
+    public function deleteAdminProfile(TransactionRole $transactionRole){
+        $transactionRole->delete();
+        return response()->json([
+            'message' => 'has eliminado las asignación con éxito.'
+        ]);
     }
 }

@@ -47,6 +47,7 @@ class UserController extends Controller
 
         $user = new User();
         $user->document_id = $request->document_id;
+        $user->active_role = $request->role;
         $user->name = $request->name;
         $user->lastname = $request->lastname;
         $user->mobile = $request->mobile;
